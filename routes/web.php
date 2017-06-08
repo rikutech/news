@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::prefix('news')->name('news.')->group(function() {
+	Route::name('index')->get('/', 'NewsController@index');
+	Route::name('show')->get('{id}', 'NewsController@show');
+});
 
-Route::get('/home', 'HomeController@index');
+Route::prefix('terms')->name('terms.')->group(function() {
+	Route::name('index')->get('/', 'TermsController@index');
+	Route::name('show')->get('{id}', 'TermsController@show');
+});
